@@ -1,8 +1,3 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
 #include "requestmapper.h"
 
 #include "controller/dumpcontroller.h"
@@ -19,17 +14,33 @@
 
 using namespace qtwebapp;
 
-RequestMapper::RequestMapper(QObject *parent) : HttpRequestHandler(parent) {
-	qDebug("RequestMapper: created");
+RequestHandler::RequestHandler(QObject *parent) : HttpRequestHandler(parent) 
+{
+	qDebug("RequestHandler: created");
 }
 
-RequestMapper::~RequestMapper() {
-	qDebug("RequestMapper: deleted");
+RequestHandler::~RequestHandler() 
+{
+	qDebug("RequestHandler: deleted");
 }
 
-void RequestMapper::service(HttpRequest &request, HttpResponse &response) {
+void RequestHandler::service(HttpRequest &request, HttpResponse &response) 
+{
 	QByteArray path = request.getPath();
-	qDebug("RequestMapper: path=%s", path.data());
+	qDebug("RequestHandler: path=%s", path.data());
+
+
+	// Тут должны быть условия при которых вызывается нужный хендлер исходя из параметров урла запроса 
+
+
+
+	// ........
+
+
+
+	//
+
+
 
 	// For the following pathes, each request gets its own new instance of the related controller.
 
@@ -63,10 +74,23 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response) {
 		staticFileController->service(request, response);
 	}
 
-	qDebug("RequestMapper: finished request");
+	qDebug("RequestHandler: finished request");
 
 	// Clear the log buffer
 	if (logger) {
 		logger->clear();
 	}
+}
+
+void RequestHandler::service(IRequest &request, IResponse &response) 
+{
+	// Тут должны быть условия при которых вызывается нужный хендлер исходя из параметров урла запроса 
+
+
+
+	// ........
+
+
+
+	//
 }

@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 	// Configure and start the TCP listener
 	QSettings *listenerSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
 	listenerSettings->beginGroup("listener");
-	new HttpListener(listenerSettings, new RequestMapper(&app), &app);
+	new HttpListener(listenerSettings, new RequestHandler(&app), &app);
 	app.exec();
 	qInfo("Application has stopped");
 }

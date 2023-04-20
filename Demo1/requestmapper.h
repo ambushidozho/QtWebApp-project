@@ -1,39 +1,19 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
 #ifndef REQUESTMAPPER_H
 #define REQUESTMAPPER_H
-
 #include "httprequesthandler.h"
+#include "DataHandlers.h"
 
-/**
-  The request mapper dispatches incoming HTTP requests to controller classes
-  depending on the requested path.
-*/
-
-class RequestMapper : public qtwebapp::HttpRequestHandler {
+class RequestHandler : public qtwebapp::HttpRequestHandler, public IHandler
+{
 	Q_OBJECT
-	Q_DISABLE_COPY(RequestMapper)
+	Q_DISABLE_COPY(RequestHandler)
   public:
-	/**
-	  Constructor.
-	  @param parent Parent object
-	*/
-	RequestMapper(QObject *parent = 0);
+	RequestHandler(QObject *parent = 0);
 
-	/**
-	  Destructor.
-	*/
-	~RequestMapper();
+	~RequestHandler();
 
-	/**
-	  Dispatch incoming HTTP requests to different controllers depending on the URL.
-	  @param request The received HTTP request
-	  @param response Must be used to return the response
-	*/
-	void service(qtwebapp::HttpRequest &request, qtwebapp::HttpResponse &response);
+	void service(qtwebapp::HttpRequest &request, qtwebapp::HttpResponse &response) override;
+	void service(IRequest &request, IResponse &response) override;
 };
 
 #endif // REQUESTMAPPER_H
