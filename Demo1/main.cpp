@@ -51,19 +51,19 @@ int main(int argc, char *argv[]) {
 	FileLogger *logger = new FileLogger(logSettings, 10000, &app);
 	logger->installMsgHandler();
 
-	// Configure template loader and cache
-	// QSettings *templateSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
-	// templateSettings->beginGroup("templates");
-	// templateCache = new TemplateCache(templateSettings, &app);
+	//Configure template loader and cache
+	QSettings *templateSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
+	templateSettings->beginGroup("templates");
+	templateCache = new TemplateCache(templateSettings, &app);
 
 	QSettings *sessionSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
 	sessionSettings->beginGroup("sessions");
 	sessionStore = new HttpSessionStore(sessionSettings, &app);
 
-	// Configure static file controller
-	// QSettings *fileSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
-	// fileSettings->beginGroup("docroot");
-	// staticFileController = new StaticFileController(fileSettings, &app);
+	//Configure static file controller
+	QSettings *fileSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
+	fileSettings->beginGroup("docroot");
+	staticFileController = new StaticFileController(fileSettings, &app);
 
 	// Configure and start the TCP listener
 	QSettings *listenerSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
