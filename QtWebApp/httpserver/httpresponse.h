@@ -7,7 +7,7 @@
 
 #include "httpcookie.h"
 #include "qtwebappglobal.h"
-#include "../../Demo1/IRequestResponse.h"
+#include "../../Technofit/IRequestResponse.h"
 #include <QMap>
 #include <QString>
 #include <QTcpSocket>

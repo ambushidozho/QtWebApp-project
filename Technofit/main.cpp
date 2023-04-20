@@ -10,13 +10,13 @@ using namespace qtwebapp;
 /** Search the configuration file */
 QString searchConfigFile() {
 	QString binDir = QCoreApplication::applicationDirPath();
-	QString fileName("Demo1.ini");
+	QString fileName("Technofit.ini");
 	QStringList searchList;
 	searchList.append(binDir);
 	searchList.append(binDir + "/etc");
 	searchList.append(binDir + "/../etc");
-	searchList.append(binDir + "/../Demo1/etc");    // for development with shadow build (Linux)
-	searchList.append(binDir + "/../../Demo1/etc"); // for development with shadow build (Windows)
+	searchList.append(binDir + "/../Technofit/etc");    // for development with shadow build (Linux)
+	searchList.append(binDir + "/../../Technofit/etc"); // for development with shadow build (Windows)
 	searchList.append(QDir::rootPath() + "etc/opt");
 	searchList.append(QDir::rootPath() + "etc");
 

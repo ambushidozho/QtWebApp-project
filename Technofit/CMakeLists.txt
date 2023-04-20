@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.11)
-project("QtWebApp Demo 1")
+project("QtWebApp Technofit")
 
 set(CMAKE_AUTOMOC ON)
 
@@ -8,7 +8,7 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED HINTS $ENV{Qt6_DIR} $ENV{
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 find_package(Qt6 COMPONENTS Core5Compat REQUIRED)
 
-add_executable(demo1
+add_executable(Technofit
 	controller/dumpcontroller.cpp
 	controller/dumpcontroller.h
 	controller/fileuploadcontroller.cpp
@@ -30,8 +30,8 @@ add_executable(demo1
 )
 #target_link_libraries(test gtest gmock pthread)
 #target_link_libraries(demo1 ${QtWebApp_LIBRARIES})
-target_link_libraries(demo1 QtWebAppGlobal QtWebAppLogging QtWebAppHttpServer QtWebAppTemplateEngine)
-target_include_directories(demo1 PUBLIC ../QtWebApp/httpserver ../QtWebApp/logging ../QtWebApp/templateengine ../QtWebApp)
-target_link_libraries(demo1 Qt${QT_VERSION_MAJOR}::Core)
-target_link_libraries(demo1 QtWebAppGlobal Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
-target_link_libraries(demo1 Qt6::Core5Compat)
+target_link_libraries(Technofit QtWebAppGlobal QtWebAppLogging QtWebAppHttpServer QtWebAppTemplateEngine)
+target_include_directories(Technofit PUBLIC ../QtWebApp/httpserver ../QtWebApp/logging ../QtWebApp/templateengine ../QtWebApp)
+target_link_libraries(Technofit Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(Technofit QtWebAppGlobal Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
+target_link_libraries(Technofit Qt6::Core5Compat)
