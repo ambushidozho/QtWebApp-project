@@ -1,6 +1,10 @@
 #pragma once
 #include "IHandler.h"
-
+#include <QJsonDocument>
+#include <QJsonParseError>
+#include <QJsonObject>
+#include <QJsonValue>
+#include <QJsonArray>
 
 class DeviceHandler : public IHandler
 {

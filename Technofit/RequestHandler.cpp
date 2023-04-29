@@ -1,5 +1,4 @@
-#include "requestmapper.h"
-
+#include "RequestHandler.h"
 #include "controller/dumpcontroller.h"
 #include "controller/fileuploadcontroller.h"
 #include "controller/formcontroller.h"
@@ -24,7 +23,7 @@ RequestHandler::~RequestHandler()
 	qDebug("RequestHandler: deleted");
 }
 
-void RequestHandler::service(HttpRequest &request, HttpResponse &response) 
+void RequestHandler::service(qtwebapp::HttpRequest &request, qtwebapp::HttpResponse &response) 
 {
 	QByteArray path = request.getPath();
 	qDebug("RequestHandler: path=%s", path.data());
@@ -32,14 +31,10 @@ void RequestHandler::service(HttpRequest &request, HttpResponse &response)
 
 	// Тут должны быть условия при которых вызывается нужный хендлер исходя из параметров урла запроса 
 
-
-
-	// ........
-
-
-
-	//
-
+	if (path.startsWith("/refresh")) {
+		ClientDataHandler cdh;
+		cdh.service(request, response);
+	}
 
 
 	// For the following pathes, each request gets its own new instance of the related controller.
@@ -82,15 +77,15 @@ void RequestHandler::service(HttpRequest &request, HttpResponse &response)
 	}
 }
 
-void RequestHandler::service(IRequest &request, IResponse &response) 
-{
-	// Тут должны быть условия при которых вызывается нужный хендлер исходя из параметров урла запроса 
+// void RequestHandler::service(IRequest &request, IResponse &response) 
+// {
+// 	// Тут должны быть условия при которых вызывается нужный хендлер исходя из параметров урла запроса 
 
 
 
-	// ........
+// 	// ........
 
 
 
-	//
-}
+// 	//
+// }

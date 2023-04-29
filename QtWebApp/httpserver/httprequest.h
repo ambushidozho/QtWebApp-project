@@ -12,7 +12,7 @@
 
 namespace qtwebapp {
 
-	class QTWEBAPP_EXPORT HttpRequest
+	class QTWEBAPP_EXPORT HttpRequest 
 	{
 		Q_DISABLE_COPY(HttpRequest)
 		friend class HttpSessionStore;
@@ -118,5 +118,8 @@ namespace qtwebapp {
 
 		QString tmpDir;
 	};
+
+
+
 
 } // namespace qtwebapp

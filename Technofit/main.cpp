@@ -1,6 +1,6 @@
 #include "global.h"
 #include "httplistener.h"
-#include "requestmapper.h"
+#include "RequestHandler.h"
 #include <QCoreApplication>
 #include <QDir>
 

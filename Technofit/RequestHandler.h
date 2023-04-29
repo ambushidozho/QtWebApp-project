@@ -11,9 +11,9 @@ class RequestHandler : public qtwebapp::HttpRequestHandler, public IHandler
 	RequestHandler(QObject *parent = 0);
 
 	~RequestHandler();
-
+	
 	void service(qtwebapp::HttpRequest &request, qtwebapp::HttpResponse &response) override;
-	void service(IRequest &request, IResponse &response) override;
+	//void service(IRequest &request, IResponse &response) override;
 };
 
 #endif // REQUESTMAPPER_H

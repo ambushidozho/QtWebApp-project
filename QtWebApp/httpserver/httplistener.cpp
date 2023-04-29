@@ -19,7 +19,6 @@ HttpListener::HttpListener(const HttpServerConfig &cfg, HttpRequestHandler *requ
 	this->requestHandler = requestHandler;
 	// Reqister type of socketDescriptor for signal/slot handling
 	qRegisterMetaType<qintptr>("qintptr");
-	// Start listening
 	listen();
 }
 

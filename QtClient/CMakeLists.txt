@@ -18,20 +18,27 @@ find_package(Qt6 REQUIRED COMPONENTS Network)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
 add_executable(QtClient
-    mainwindow.ui
-    mainwindow.cpp
-    main.cpp
+    Sources/mainwindow.ui
+    Sources/mainwindow.cpp
+    Sources/main.cpp
     resource.qrc
-    HttpWorker.cpp
-    QNetworkAccessManagerWrapper.cpp
-    RefreshDataWorker.cpp
-    Device.cpp
-    mainwindow.h
-    HttpWorker.h
-    QNetworkAccessManagerWrapper.h
-    RefreshDataWorker.h
-    Device.h
-    
+    Sources/Device.cpp
+    Headers/mainwindow.h
+    Headers/Device.h
+    UseCase/IMetricsUseCase.h
+    UseCase/MetricsUseCase.h
+    UseCase/IMetricsNetworkHandler.h
+    Network/IMetricsNetwork.h
+    Network/INetworkManager.h
+    Network/MetricsNetwork.h
+    Network/NetworkManager.h
+    ../IRequest.h
+    ../IResponse.h
+    RequestAdapter.h
+    RequestAdapter.cpp
+    ResponseAdapter.h
+    ResponseAdapter.cpp
+    AppRoot.h
 )
 # 
 # 

@@ -7,6 +7,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED HINTS $ENV{Qt6_DIR} $ENV{Qt5_DIR})
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 find_package(Qt6 COMPONENTS Core5Compat REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Sql)
 
 add_executable(Technofit
 	controller/dumpcontroller.cpp
@@ -25,8 +26,8 @@ add_executable(Technofit
 	global.cpp
 	global.h
 	main.cpp
-	requestmapper.cpp
-	requestmapper.h
+	RequestHandler.cpp
+	RequestHandler.h
 )
 #target_link_libraries(test gtest gmock pthread)
 #target_link_libraries(demo1 ${QtWebApp_LIBRARIES})
@@ -35,3 +36,4 @@ target_include_directories(Technofit PUBLIC ../QtWebApp/httpserver ../QtWebApp/l
 target_link_libraries(Technofit Qt${QT_VERSION_MAJOR}::Core)
 target_link_libraries(Technofit QtWebAppGlobal Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
 target_link_libraries(Technofit Qt6::Core5Compat)
+target_link_libraries(Technofit PRIVATE Qt6::Sql)
