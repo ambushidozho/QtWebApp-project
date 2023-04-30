@@ -1,13 +1,17 @@
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.0.0)
 project("QtWebApp Technofit")
 
 set(CMAKE_AUTOMOC ON)
 
 #find_package(QtWebApp REQUIRED COMPONENTS HttpServer Logging TemplateEngine)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED HINTS $ENV{Qt6_DIR} $ENV{Qt5_DIR})
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 find_package(Qt6 COMPONENTS Core5Compat REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Sql)
+#find_package(Qt6 COMPONENTS Core Network REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
+if (${QT_VERSION_MAJOR} EQUAL 6)
+    find_package(Qt6 COMPONENTS Core5Compat REQUIRED)
+endif()
+
 
 add_executable(Technofit
 	controller/dumpcontroller.cpp
@@ -25,15 +29,38 @@ add_executable(Technofit
 	documentcache.h
 	global.cpp
 	global.h
+	ClientAppRoot.h
 	main.cpp
-	RequestHandler.cpp
-	RequestHandler.h
+	Handlers/RequestHandler.cpp
+	Handlers/RequestHandler.h
+	Handlers/IHandler.h
+	Handlers/DataHandlers.h
+	Handlers/DataHandlers.cpp
+	UseCase/IServerDatabase.h
+	UseCase/IServerUsecase.h
+	UseCase/ServerUsecase.h
+	UseCase/ServerUsecase.cpp
+	Database/DataBaseDriver.cpp
+	Database/IDataBaseDriver.h
+	Database/DataBaseDriver.h
+	Database/Repository.h
+	Database/Repository.cpp
+	Database/IRepository.h
+	Adapters/RequestAdapter.h
+	Adapters/RequestAdapter.cpp
+	Adapters/ResponseAdapter.h
+	Adapters/ResponseAdapter.cpp
+	../IRequest.h
+	../IResponse.h
 )
-#target_link_libraries(test gtest gmock pthread)
-#target_link_libraries(demo1 ${QtWebApp_LIBRARIES})
+
 target_link_libraries(Technofit QtWebAppGlobal QtWebAppLogging QtWebAppHttpServer QtWebAppTemplateEngine)
 target_include_directories(Technofit PUBLIC ../QtWebApp/httpserver ../QtWebApp/logging ../QtWebApp/templateengine ../QtWebApp)
 target_link_libraries(Technofit Qt${QT_VERSION_MAJOR}::Core)
-target_link_libraries(Technofit QtWebAppGlobal Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
-target_link_libraries(Technofit Qt6::Core5Compat)
-target_link_libraries(Technofit PRIVATE Qt6::Sql)
+target_link_libraries(Technofit Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
+if (${QT_VERSION_MAJOR} EQUAL 6)
+    target_link_libraries(Technofit Qt6::Core5Compat)
+endif()
+
+
+

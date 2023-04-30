@@ -1,8 +1,7 @@
 #include "DataHandlers.h"
+#include <iostream>
 
-
-
-void DeviceHandler::service(IRequest &request, IResponse &response)
+void DeviceDataHandler::service(IRequest &request, IResponse &response)
 {
     // получает данные в виде json в request`e из девайса
     // преобразует их в плюсовые структуры 
@@ -14,26 +13,16 @@ void DeviceHandler::service(IRequest &request, IResponse &response)
     //....
 }
 
-
-void ClientDataHandler::service(qtwebapp::HttpRequest &request, qtwebapp::HttpResponse &response)
+void ClientDataHandler::service(IRequest &request, IResponse &response)
 {
-    // QStringList propertyNames;
-    // QStringList propertyKeys;
-    // QString strReply = (QString)reply->readAll();
-    // QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
-    // QJsonObject jsonObject = jsonResponse.object();
-    // QJsonArray jsonArray = jsonObject["properties"].toArray();
-
-    // foreach (const QJsonValue & value, jsonArray) {
-    //     QJsonObject obj = value.toObject();
-    //     propertyNames.append(obj["PropertyName"].toString());
-    //     propertyKeys.append(obj["key"].toString());
-    // }
+    usecase_->ProcessRequest(request);
     // получает запрос от клиента на отображение данных 
-    
     // вызывает функцию, достаёт из бд данные
-
-    // преобразует в json отправляет клиенту
+    // отправляет клиенту
+    std::vector<unsigned char> reply(reply_.begin(), reply_.end());
+    std::cout << "ready to write into response" << std::endl;
+    std::cout << reply_ << std::endl;
+    response.write(reply);
 }
 
 void ClientMLHandler::service(IRequest &request, IResponse &response)

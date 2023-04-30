@@ -9,6 +9,7 @@
 
 #include <QDir>
 #include <QList>
+#include <iostream>
 
 using namespace qtwebapp;
 

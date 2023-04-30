@@ -1,15 +1,19 @@
 #include "RequestHandler.h"
-#include "controller/dumpcontroller.h"
-#include "controller/fileuploadcontroller.h"
-#include "controller/formcontroller.h"
-#include "controller/logincontroller.h"
-#include "controller/sessioncontroller.h"
-#include "controller/templatecontroller.h"
+#include "../controller/dumpcontroller.h"
+#include "../controller/fileuploadcontroller.h"
+#include "../controller/formcontroller.h"
+#include "../controller/logincontroller.h"
+#include "../controller/sessioncontroller.h"
+#include "../controller/templatecontroller.h"
 #include "filelogger.h"
-#include "global.h"
+#include "../global.h"
 #include "staticfilecontroller.h"
-
+#include "DataHandlers.h"
+#include "../Adapters/RequestAdapter.h"
+#include "../Adapters/ResponseAdapter.h"
+#include "../ClientAppRoot.h"
 #include <QCoreApplication>
+#include <iostream>
 
 using namespace qtwebapp;
 
@@ -32,8 +36,29 @@ void RequestHandler::service(qtwebapp::HttpRequest &request, qtwebapp::HttpRespo
 	// Тут должны быть условия при которых вызывается нужный хендлер исходя из параметров урла запроса 
 
 	if (path.startsWith("/refresh")) {
-		ClientDataHandler cdh;
-		cdh.service(request, response);
+		std::cout << " refreshing " << std::endl;
+		ClientAppRoot root;
+		root.cdh_->setUsecase(root.usecase_);
+		root.usecase_->setHandler(root.cdh_);
+		root.usecase_->setRepository(root.repository_);
+		root.repository_->setUsecase(root.usecase_);
+		root.repository_->setDatabaseDriver(root.databasedriver_);
+		root.databasedriver_->setRepository(root.repository_);
+		RequestAdapter req(&request);
+		ResponseAdapter res(&response);
+		root.cdh_->service(req, res);
+	}
+
+	if (path.startsWith("/arduino"))
+	{
+		// DeviceDataHandler ddh;
+		// ddh.service(request, response);
+	}
+
+	if (path.startsWith("/ML"))
+	{
+		// ClientMLHandler mlh;
+		// mlh.service(request,response);
 	}
 
 
@@ -76,16 +101,3 @@ void RequestHandler::service(qtwebapp::HttpRequest &request, qtwebapp::HttpRespo
 		logger->clear();
 	}
 }
-
-// void RequestHandler::service(IRequest &request, IResponse &response) 
-// {
-// 	// Тут должны быть условия при которых вызывается нужный хендлер исходя из параметров урла запроса 
-
-
-
-// 	// ........
-
-
-
-// 	//
-// }

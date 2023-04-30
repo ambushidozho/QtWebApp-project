@@ -9,6 +9,7 @@
 #include "httpconnectionhandlerpool.h"
 
 #include <QCoreApplication>
+#include <iostream>
 
 using namespace qtwebapp;
 

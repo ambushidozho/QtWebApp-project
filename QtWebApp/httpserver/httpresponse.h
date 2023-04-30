@@ -1,13 +1,8 @@
-/**
-  @file
-  @author Stefan Frings
-*/
 
 #pragma once
 
 #include "httpcookie.h"
 #include "qtwebappglobal.h"
-#include "../../Technofit/IRequestResponse.h"
 #include <QMap>
 #include <QString>
 #include <QTcpSocket>

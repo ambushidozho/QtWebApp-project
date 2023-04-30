@@ -1,7 +1,6 @@
 #pragma once
 #include "httpserverconfig.h"
 #include "qtwebappglobal.h"
-#include "../../Technofit/IRequestResponse.h"
 #include <QByteArray>
 #include <QHostAddress>
 #include <QMap>

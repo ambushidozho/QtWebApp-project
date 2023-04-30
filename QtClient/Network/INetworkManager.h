@@ -10,7 +10,9 @@ public:
     {
 
     }
-    virtual void post(IRequest& request, std::vector<unsigned char>& body, std::function<void(IResponse)> OnGetReply) = 0;    
-    virtual void get(IRequest& request, std::function<void(IResponse)> OnGetReply) = 0;
+    virtual void post(IRequest& request, std::vector<unsigned char>& body) = 0;    
+    virtual void get(IRequest& request) = 0;
+
+
 };
 

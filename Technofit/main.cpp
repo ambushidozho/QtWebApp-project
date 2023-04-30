@@ -1,9 +1,10 @@
 #include "global.h"
 #include "httplistener.h"
-#include "RequestHandler.h"
+#include "Handlers/RequestHandler.h"
+#include "logger.h"
 #include <QCoreApplication>
 #include <QDir>
-
+#include <iostream>
 
 using namespace qtwebapp;
 
@@ -19,6 +20,7 @@ QString searchConfigFile() {
 	searchList.append(binDir + "/../../Technofit/etc"); // for development with shadow build (Windows)
 	searchList.append(QDir::rootPath() + "etc/opt");
 	searchList.append(QDir::rootPath() + "etc");
+	searchList.append("etc/");
 
 	foreach (QString dir, searchList) {
 		QFile file(dir + "/" + fileName);
@@ -42,16 +44,14 @@ QString searchConfigFile() {
 */
 int main(int argc, char *argv[]) {
 	QCoreApplication app(argc, argv);
-	app.setApplicationName("Demo1");
+	app.setApplicationName("Technofit");
 
 	QString configFileName = searchConfigFile();
-
-	QSettings *logSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
-	logSettings->beginGroup("logging");
-	FileLogger *logger = new FileLogger(logSettings, 10000, &app);
+	
+	logger = new Logger(&app);
 	logger->installMsgHandler();
 
-	//Configure template loader and cache
+	// Configure template loader and cache
 	QSettings *templateSettings = new QSettings(configFileName, QSettings::IniFormat, &app);
 	templateSettings->beginGroup("templates");
 	templateCache = new TemplateCache(templateSettings, &app);

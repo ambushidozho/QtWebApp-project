@@ -27,11 +27,14 @@ add_executable(QtClient
     Headers/Device.h
     UseCase/IMetricsUseCase.h
     UseCase/MetricsUseCase.h
+    UseCase/MetricsUseCase.cpp
     UseCase/IMetricsNetworkHandler.h
     Network/IMetricsNetwork.h
     Network/INetworkManager.h
     Network/MetricsNetwork.h
+    Network/MetricsNetwork.cpp
     Network/NetworkManager.h
+    Network/NetworkManager.cpp
     ../IRequest.h
     ../IResponse.h
     RequestAdapter.h

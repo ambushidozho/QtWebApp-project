@@ -1,14 +1,9 @@
-/**
-  @file
-  @author Stefan Frings
-*/
 
 #pragma once
 
 #include "httprequest.h"
 #include "httpresponse.h"
 #include "qtwebappglobal.h"
-#include "../Technofit/IRequestResponse.h"
 namespace qtwebapp 
 {
 	class QTWEBAPP_EXPORT HttpRequestHandler : public QObject {

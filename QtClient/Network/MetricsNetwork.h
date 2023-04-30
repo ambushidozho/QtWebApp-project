@@ -10,19 +10,22 @@ class MetricsNetwork : public IMetricsNetwork
 public:
     MetricsNetwork()
     {
-        networkManager = new NetworkManager();
+        
     }
     ~MetricsNetwork() override
     {
-        delete networkManager;
     }
     void FetchStatistics(int user_id) override;
-    void OnGetReply(IResponse& reply);
+    void OnGetReply(IResponse& reply) override;
+    void setNetworkManager(INetworkManager* networkManager)
+    {
+        networkManager_ = networkManager;
+    }
     void setReplyHandler(IMetricsNetworkHandler* replyHandler)
     {
-        this->replyHandler = replyHandler;
+        replyHandler_ = replyHandler;
     }
 private:
-    INetworkManager* networkManager;
-    IMetricsNetworkHandler* replyHandler;
+    INetworkManager* networkManager_;
+    IMetricsNetworkHandler* replyHandler_;
 };
