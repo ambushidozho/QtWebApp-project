@@ -1,9 +1,10 @@
 #pragma once
 #include "IHandler.h"
-#include "../IRequest.h"
-#include "../IResponse.h"
+#include "../../IRequest.h"
+#include "../../IResponse.h"
 #include "../UseCase/IServerUsecase.h"
 #include <string>
+
 
 
 class DeviceDataHandler : public IHandler
@@ -22,17 +23,12 @@ public:
 		
 	}
 	void service(IRequest &request, IResponse &response) override;
-	void setReply(std::string& reply)
-	{
-		reply_ = reply;
-	}
 	void setUsecase(IServerUsecase* usecase)
 	{
 		usecase_ = usecase;
 	}
 private:
 	IServerUsecase* usecase_;
-	std::string reply_;
 };
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "../../IResponse.h"
+#include <functional>
 class IMetricsNetwork
 {
 public:

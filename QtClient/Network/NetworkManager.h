@@ -20,8 +20,8 @@ public:
     {
         network_ = network;
     }
-    void post(IRequest& request, std::vector<unsigned char>& body) override;    
-    void get(IRequest& request) override;
+    void post(IRequest& request, std::vector<unsigned char>& body, std::function<void(IResponse&)> const& OnGetReply) override;    
+    void get(IRequest& request, std::function<void(IResponse&)> const& OnGetReply) override;
 private:
     QNetworkAccessManager* networkmanager;
     IMetricsNetwork* network_;

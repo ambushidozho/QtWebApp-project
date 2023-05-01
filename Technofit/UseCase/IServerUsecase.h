@@ -5,5 +5,5 @@
 class IServerUsecase
 {
 public:
-    virtual void ProcessRequest(IRequest& request) = 0;
+    virtual std::string ProcessRequest(std::vector<unsigned char>& request) = 0;
 };

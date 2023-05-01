@@ -5,10 +5,10 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <iostream>
+#define DEBUG
 
 using namespace qtwebapp;
 
-/** Search the configuration file */
 QString searchConfigFile() {
 	QString binDir = QCoreApplication::applicationDirPath();
 	QString fileName("Technofit.ini");
@@ -16,8 +16,8 @@ QString searchConfigFile() {
 	searchList.append(binDir);
 	searchList.append(binDir + "/etc");
 	searchList.append(binDir + "/../etc");
-	searchList.append(binDir + "/../Technofit/etc");    // for development with shadow build (Linux)
-	searchList.append(binDir + "/../../Technofit/etc"); // for development with shadow build (Windows)
+	searchList.append(binDir + "/../Technofit/etc");   
+	searchList.append(binDir + "/../../Technofit/etc"); 
 	searchList.append(QDir::rootPath() + "etc/opt");
 	searchList.append(QDir::rootPath() + "etc");
 	searchList.append("etc/");
@@ -31,7 +31,6 @@ QString searchConfigFile() {
 		}
 	}
 
-	// not found
 	foreach (QString dir, searchList) {
 		qWarning("%s/%s not found", qPrintable(dir), qPrintable(fileName));
 	}
@@ -39,9 +38,7 @@ QString searchConfigFile() {
 	return nullptr;
 }
 
-/**
-  Entry point of the program.
-*/
+
 int main(int argc, char *argv[]) {
 	QCoreApplication app(argc, argv);
 	app.setApplicationName("Technofit");

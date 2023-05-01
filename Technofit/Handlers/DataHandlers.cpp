@@ -15,13 +15,14 @@ void DeviceDataHandler::service(IRequest &request, IResponse &response)
 
 void ClientDataHandler::service(IRequest &request, IResponse &response)
 {
-    usecase_->ProcessRequest(request);
+    std::vector<unsigned char>& vc = request.GetBody();
+    //std::vector<unsigned char>& vc;
+    std::string reply_ = usecase_->ProcessRequest(vc);
     // получает запрос от клиента на отображение данных 
     // вызывает функцию, достаёт из бд данные
     // отправляет клиенту
     std::vector<unsigned char> reply(reply_.begin(), reply_.end());
     std::cout << "ready to write into response" << std::endl;
-    std::cout << reply_ << std::endl;
     response.write(reply);
 }
 

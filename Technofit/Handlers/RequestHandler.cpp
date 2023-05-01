@@ -39,11 +39,8 @@ void RequestHandler::service(qtwebapp::HttpRequest &request, qtwebapp::HttpRespo
 		std::cout << " refreshing " << std::endl;
 		ClientAppRoot root;
 		root.cdh_->setUsecase(root.usecase_);
-		root.usecase_->setHandler(root.cdh_);
 		root.usecase_->setRepository(root.repository_);
-		root.repository_->setUsecase(root.usecase_);
 		root.repository_->setDatabaseDriver(root.databasedriver_);
-		root.databasedriver_->setRepository(root.repository_);
 		RequestAdapter req(&request);
 		ResponseAdapter res(&response);
 		root.cdh_->service(req, res);

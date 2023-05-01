@@ -7,7 +7,7 @@
 #include <QNetworkRequest>
 
 
-void NetworkManager::post(IRequest& request, std::vector<unsigned char>& body)
+void NetworkManager::post(IRequest& request, std::vector<unsigned char>& body, std::function<void(IResponse&)> const& OnGetReply)
 {
     QNetworkRequest Qrequest;
     Qrequest.setUrl(QUrl(QString::fromStdString(request.GetUrl())));
@@ -16,15 +16,15 @@ void NetworkManager::post(IRequest& request, std::vector<unsigned char>& body)
     QNetworkReply *reply = networkmanager->post(Qrequest, data);
     ResponseAdapter response;
     response.SetReply(reply);
-    network_->OnGetReply(response);
+    OnGetReply(response);
 }    
 
-void NetworkManager::get(IRequest& request)
+void NetworkManager::get(IRequest& request, std::function<void(IResponse&)> const& OnGetReply)
 {
     QNetworkRequest Qrequest;
     Qrequest.setUrl(QUrl(QString::fromStdString(request.GetUrl())));
     QNetworkReply *reply = networkmanager->get(Qrequest);
     ResponseAdapter response;
     response.SetReply(reply);
-    network_->OnGetReply(response);
+    OnGetReply(response);
 }

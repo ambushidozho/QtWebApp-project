@@ -2,14 +2,8 @@
 
 
 
-void ServerUsecase::ProcessRequest(IRequest& request) 
+std::string ServerUsecase::ProcessRequest(std::vector<unsigned char>& request) 
 {
-    repository_->formQuery(request);
+    return repository_->formQuery(request);
 }
 
-
-void ServerUsecase::OnReplyFromDb(std::string& reply)
-{
-    // отдаю хендлеру данные которые он отправит
-    handler_->setReply(reply);
-}
