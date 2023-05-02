@@ -43,6 +43,36 @@ add_executable(QtClient
     ResponseAdapter.cpp
     AppRoot.h
 )
-# 
-# 
+
+add_executable(QtClientTest
+    Sources/main_test.cpp
+    Headers/mainwindow.h
+    Sources/mainwindow.cpp
+   
+    Network/NetworkManager.h
+    Network/NetworkManager.cpp
+    Network/NetworkManagerTests.cpp
+    Network/MetricsNetwork.h
+    Network/MetricsNetwork.cpp
+    Network/MetricsNetworkTests.cpp
+    UseCase/MetricsUseCase.h
+    UseCase/MetricsUseCase.cpp
+    UseCase/MetricsUseCaseTests.cpp
+    Mocks/MockMetricsNetwork.h
+    Mocks/MockMetricsUI.h
+    Mocks/MockMetricsUseCase.h
+    Mocks/MockNetworkManager.h
+    Mocks/MockRequest.h
+    Mocks/MockResponse.h
+    Headers/Device.h
+    Sources/Device.cpp
+    RequestAdapter.h
+    RequestAdapter.cpp
+    ResponseAdapter.h
+    ResponseAdapter.cpp
+    )
+#
+#Sources/mainwindowTests.cpp
+target_link_libraries(QtClientTest -lgtest -lgmock Qt6::Widgets Qt6::Gui  Qt6::Network Qt6::Core)
+
 target_link_libraries(QtClient Qt6::Widgets Qt6::Gui  Qt6::Network Qt6::Core)

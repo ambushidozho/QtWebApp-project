@@ -5,6 +5,7 @@
 #include <QNetworkAccessManager>
 #include "IMetricsNetwork.h"
 
+
 class NetworkManager : public INetworkManager
 {
 public:

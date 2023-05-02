@@ -10,9 +10,13 @@
 class MetricsUseCase : public IMetricsUseCase, public IMetricsNetworkHandler
 {
 public:
-    void SetUIandNetwork(IMetricsUI* ui,  IMetricsNetwork* network)
+    void SetUI(IMetricsUI* ui)
     {
         this->ui = ui;
+       
+    }
+    void SetNetwork(IMetricsNetwork* network)
+    {
         this->network_ = network;
     }
     ~MetricsUseCase() override
